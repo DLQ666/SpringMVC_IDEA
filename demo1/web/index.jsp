@@ -22,6 +22,29 @@
   $(function(){
     // ajax请求
     $("#aaa").click(function () {
+      let name = $("#name1").val();
+      let price = $("#price1").val();
+      let author = $("#author1").val();
+      console.log(name)
+      $.ajax({
+        url: "http://localhost:8080/demo1/hello",
+        // data: "action=jQueryAjax",
+        data: JSON.stringify({name: name, price: price, author: author}),
+        type: "POST",
+        contentType:"application/json",
+        //dataType: "json",
+        /*success: function (data) {
+            // alert("服务器返回的数据是：" + data);
+            // var jsonObj = JSON.parse(data);
+            // $("#msg").html("编号："+jsonObj.id +"，姓名："+jsonObj.name);
+            alert(data)
+            //$("#msg").html("ajax 编号："+data.id +"，姓名："+data.name);
+        },
+        dataType: "json",*/
+      })
+      return false;
+    });
+    $("#aaa2").click(function () {
       let name = $("#name").val();
       let price = $("#price").val();
       let author = $("#author").val();
@@ -48,10 +71,15 @@
 </script>
 <body>
 <a href="hello">测试springMVC</a><br/>
+书名：<input type="text" name="name" id="name1"><br/>
+价格：<input type="text" name="price" id="price1"><br/>
+作者：<input type="text" name="author" id="author1"><br/>
+<button id="aaa" >提交</button>
+<a href="hello">测试springMVC</a><br/>
 书名：<input type="text" name="name" id="name"><br/>
 价格：<input type="text" name="price" id="price"><br/>
 作者：<input type="text" name="author" id="author"><br/>
-<button id="aaa" >提交</button>
+<button id="aaa2" >提交</button>
 
 </body>
 </html>
